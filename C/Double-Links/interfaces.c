@@ -4,7 +4,13 @@
 #include "structs.h"
 #include "interfaces.h"
 
-/* The following interfaces are implemented assuming double links are the base data structure. */
+/* The Deque interfaces are implemented assuming double links are the base data structure. */
+/* --------------------------------------------
+ *
+ *                    DEQUE
+ * 
+ * --------------------------------------------
+ */
 
 void initDeque(struct Deque* dq)
 {
@@ -66,6 +72,8 @@ void addFrontDeque(struct Deque* dq, TYPE val)
   
   dLink->next->prev = dLink;
   dq->head->next = dLink;
+
+  dq->size++;
 }
 
 void addBackDeque(struct Deque* dq, TYPE val)
@@ -84,6 +92,8 @@ void addBackDeque(struct Deque* dq, TYPE val)
   
   dLink->prev->next = dLink;
   dq->tail->prev = dLink;
+
+  dq->size++;
 }
 
 void printDeque(struct Deque* dq)
@@ -129,15 +139,22 @@ void removeFront(struct Deque* dq)
 
   assert(dq);
 
-  if ( isEmpty(dq) )
+  if ( isEmptyDeque(dq) )
+  {
     return;
-  
-  rmv = dq->head->next;
+  }
+  else
+  {
+    rmv = dq->head->next;
 
-  dq->head->next = rmv->next;
-  rmv->next->prev = dq->head;
+    dq->head->next = rmv->next;
+    rmv->next->prev = dq->head;
 
-  free(rmv);
+    free(rmv);
+
+    dq->size--;
+  }
+    
 }
 
 void removeBack(struct Deque* dq)
@@ -146,28 +163,37 @@ void removeBack(struct Deque* dq)
 
   assert(dq);
 
-  if ( isEmpty(dq) )
+  if ( isEmptyDeque(dq) )
+  {
     return;
-  
-  rmv = dq->tail->prev;
+  }
+  else
+  {
+    rmv = dq->tail->prev;
 
-  dq->tail->prev = rmv->prev;
-  rmv->prev->next = dq->tail;
+    dq->tail->prev = rmv->prev;
+    rmv->prev->next = dq->tail;
 
-  free(rmv);
+    free(rmv);
+
+    dq->size--;
+  }
+
 }
 
-int isEmpty(struct Deque* dq)
+int isEmptyDeque(struct Deque* dq)
 {
   assert(dq);
 
-  if ((dq->head->next == dq->tail) && (dq->tail->prev == dq->head))
+  if (dq->size == 0)
   {
     return 1;
   }
+  else
+  {
+    return 0;
+  }
 
-  return 0;
-  
 }
 
 TYPE front(struct Deque* dq)
@@ -176,13 +202,17 @@ TYPE front(struct Deque* dq)
 
   assert(dq);
 
-  if ( isEmpty(dq) )
+  if ( isEmptyDeque(dq) )
+  {
     return returnVal;
+  }
+  else
+  {
+    returnVal = (TYPE) dq->head->next->val;
 
-  returnVal = (TYPE) dq->head->next->val;
+    return returnVal;
+  }
 
-  return returnVal;
-  
 }
 
 TYPE back(struct Deque* dq)
@@ -191,11 +221,176 @@ TYPE back(struct Deque* dq)
 
   assert(dq);
 
-  if ( isEmpty(dq) )
+  if ( isEmptyDeque(dq) )
+  {
     return returnVal;
+  }
+  else
+  {
+    returnVal = (TYPE) dq->tail->prev->val;
 
-  returnVal = (TYPE) dq->tail->prev->val;
+    return returnVal;
+  }
 
-  return returnVal;
+}
+
+/* --------------------------------------------
+ *
+ *                  END DEQUE
+ * 
+ * --------------------------------------------
+ */
+
+/*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*/
+
+/* --------------------------------------------
+ *
+ *                   QUEUE
+ * 
+ * --------------------------------------------
+ */
+
+void initQueue(struct Queue* q)
+{
+  struct Link* senFront;
+
+  assert(q);
+
+  q->size = 0;
+
+  senFront = (struct Link*) malloc(sizeof(struct Link));
+
+  assert(senFront);
+
+  senFront->next = NULL;
+
+  q->head = senFront;
+  q->tail = senFront;
+}
+
+void freeQueue(struct Queue* q)
+{
+  struct Link* curr, * temp;
+
+  assert(q);
+
+  curr = q->head;
+
+  while (curr)
+  {
+    temp = curr;
+
+    curr = curr->next;
+
+    free(temp);
+  }
+
+}
+
+void addQueue(struct Queue* q, TYPE val)
+{
+  struct Link* link;
+
+  assert(q);
+
+  link = (struct Link*) malloc(sizeof(struct Link));
+
+  assert(link);
+
+  link->val = val;
+  link->next = NULL;
+
+  q->tail->next = link;
+  q->tail = link;
+
+  q->size++;
+}
+
+void printQueue(struct Queue* q)
+{
+  struct Link* curr;
+  int count = 0;
+
+  assert(q);
+
+  printf("Front to Back:\n\n");
+
+  curr = q->head->next;
+
+  while (curr)
+  {
+    count++;
+
+    printf("- Link %d: { %d }\n", count, curr->val);
+
+    curr = curr->next;
+  }
   
 }
+
+void removeQueue(struct Queue* q)
+{
+  struct Link* curr;
+
+  assert(q);
+
+  if ( isEmptyQueue(q) )
+  {
+    return;
+  }
+  else
+  {
+    curr = q->head->next;
+
+    q->head->next = curr->next;
+
+    if (curr == q->tail)
+      q->tail = q->head;
+
+    free(curr);
+
+    q->size--;
+  }
+  
+}
+
+int isEmptyQueue(struct Queue* q)
+{
+  assert(q);
+
+  if (q->size == 0)
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+
+}
+
+TYPE frontQueue(struct Queue* q)
+{
+  TYPE returnVal = NULL;
+
+  assert(q);
+
+  if ( isEmptyQueue(q) )
+  {
+    return returnVal;
+  }
+  else
+  {
+    returnVal = (TYPE) q->head->next->val;
+
+    return returnVal;
+  }
+
+}
+
+/* --------------------------------------------
+ *
+ *                  END QUEUE
+ * 
+ * --------------------------------------------
+ */

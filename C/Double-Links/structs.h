@@ -29,15 +29,17 @@ struct Deque
   int size;
 };
 
-struct Stack
-{
-  struct Link* head;
-};
-
 struct Queue
 {
   struct Link* head;
   struct Link* tail;
+
+  int size;
+};
+
+struct Stack
+{
+  struct Link* head;
 };
 
 #endif
