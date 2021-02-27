@@ -10,11 +10,14 @@ int containsBST(struct BST* tree, TYPE val);
 void addBST(struct BST* tree, TYPE val);
 void removeBST(struct BST* tree, TYPE val);
 void printBST(struct BST* tree);
-int sizeBST(struct BST* tree);
 int isEmptyBST(struct BST* tree);
 struct Node* _addNode(struct Node* curr, TYPE val);
+struct Node* _removeNode(struct Node* curr, TYPE val);
+struct Node *_removeLeftmost(struct Node* curr);
+int _containsNode(struct Node* curr, TYPE val);
 void _printInOrder(struct Node* curr);
 void _freePostOrder(struct Node* curr);
+
 /* END Binary Search Tree */
 
 /* Misc */

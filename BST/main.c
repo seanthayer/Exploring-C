@@ -59,10 +59,20 @@ int main(int argc, char const *argv[])
 
   printf("- isEmpty: %d\n\n", isEmptyBST(&bst));
 
+  printf("- contains {747}?: %d\n\n", containsBST(&bst, 747));
+  printf("- contains {199}?: %d\n\n", containsBST(&bst, 199));
+  printf("- contains {500}?: %d\n\n", containsBST(&bst, 500));
+
   printf("- Ready to print. Press ENTER.\n");
   getchar();
 
   printBST(&bst);
+
+  printf("\n- removing {747}\n\n");
+
+  removeBST(&bst, 747);
+
+  printf("- contains {747}?: %d\n", containsBST(&bst, 747));
 
   printf("\n");
 

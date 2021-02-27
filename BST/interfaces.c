@@ -20,7 +20,20 @@ void freeBST(struct BST* tree)
   _freePostOrder(tree->root);
 }
 
-/*int containsBST(struct BST* tree, TYPE val);*/
+int containsBST(struct BST* tree, TYPE val)
+{
+  assert(tree);
+  
+  if ( isEmptyBST(tree) )
+  {
+    return 0;
+  }
+  else
+  {
+    return _containsNode(tree->root, val);
+  }
+  
+}
 
 void addBST(struct BST* tree, TYPE val)
 {
@@ -31,7 +44,18 @@ void addBST(struct BST* tree, TYPE val)
   tree->size++;
 }
 
-/*void removeBST(struct BST* tree, TYPE val);*/
+void removeBST(struct BST* tree, TYPE val)
+{
+  assert(tree);
+
+  if ( containsBST(tree, val) )
+  {
+    tree->root = _removeNode(tree->root, val);
+
+    tree->size--;
+  }
+  
+}
 
 void printBST(struct BST* tree)
 {
@@ -39,8 +63,6 @@ void printBST(struct BST* tree)
 
   _printInOrder(tree->root);
 }
-
-/*int sizeBST(struct BST* tree);*/
 
 int isEmptyBST(struct BST* tree)
 {
@@ -88,6 +110,102 @@ struct Node* _addNode(struct Node* curr, TYPE val)
   }
   
   return curr;
+}
+
+struct Node* _removeNode(struct Node* curr, TYPE val)
+{
+  struct Node* node;
+
+  if ( EQ(val, curr->val) )
+  {
+
+    if (curr->right == NULL)
+    {
+      node = curr->left;
+
+      free(curr);
+
+      return node;
+    }
+    else
+    {
+      /* Finding leftmost descendant of the right child */
+      /* { */
+      node = curr->right;
+
+      while (node->left)
+      {
+        node = node->left;
+      }
+      /* } */
+
+      curr->val = node->val;
+      curr->right = _removeLeftmost(curr->right);
+
+    }
+    
+  }
+  else
+  {
+
+    if ( LT(val, curr->val) )
+    {
+      curr->left = _removeNode(curr->left, val);
+    }
+    else
+    {
+      curr->right = _removeNode(curr->right, val);
+    }
+
+  }
+
+  return curr;
+}
+
+struct Node* _removeLeftmost(struct Node* curr)
+{
+  struct Node* node;
+
+  if(curr->left)
+  {
+    curr->left = _removeLeftmost(curr->left);
+
+    return curr;
+  }
+  else
+  {
+    node = curr->right;
+
+    free(curr);
+
+    return node;
+  }
+
+}
+
+int _containsNode(struct Node* curr, TYPE val)
+{
+  int flag = 0;
+
+  if ( EQ(val, curr->val) )
+  {
+    flag = 1;
+  }
+  else if (curr != NULL)
+  {
+    
+    if ( LT(val, curr->val) && curr->left)
+    {
+      flag = _containsNode(curr->left, val);
+    }
+    else if (curr->right)
+    {
+      flag = _containsNode(curr->right, val);
+    }
+
+  }
+  
+  return flag;
 }
 
 void _printInOrder(struct Node* curr)
