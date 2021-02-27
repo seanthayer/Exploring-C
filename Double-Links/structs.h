@@ -40,6 +40,8 @@ struct Queue
 struct Stack
 {
   struct Link* head;
+
+  int size;
 };
 
 #endif

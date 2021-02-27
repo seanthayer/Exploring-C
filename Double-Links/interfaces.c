@@ -394,3 +394,119 @@ TYPE frontQueue(struct Queue* q)
  * 
  * --------------------------------------------
  */
+
+/*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*/
+
+/* --------------------------------------------
+ *
+ *                    STACK
+ * 
+ * --------------------------------------------
+ */
+
+void initStack(struct Stack* s)
+{
+  /* No sentinel in Stack */
+
+  assert(s);
+
+  s->size = 0;
+
+  s->head = NULL;
+}
+
+void freeStack(struct Stack* s)
+{
+  assert(s);
+
+  while ( !isEmptyStack(s) )
+  {
+    popStack(s);
+  }
+  
+}
+
+int isEmptyStack(struct Stack* s)
+{
+  assert(s);
+
+  if (s->size == 0)
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+  
+}
+
+void pushStack(struct Stack* s, TYPE val)
+{
+  struct Link* link;
+
+  assert(s);
+
+  link = (struct Link*) malloc(sizeof(struct Link));
+
+  link->val = val;
+  link->next = s->head;
+
+  s->head = link;
+
+  s->size++;
+}
+
+TYPE popStack(struct Stack* s)
+{
+  struct Link* pop;
+  TYPE returnVal = NULL;
+
+  assert(s);
+
+  if ( isEmptyStack(s) )
+  {
+    return returnVal;
+  }
+  else
+  {
+    pop = s->head;
+
+    returnVal = (TYPE) pop->val;
+
+    s->head = pop->next;
+
+    free(pop);
+
+    s->size--;
+
+    return returnVal;
+  }
+  
+}
+
+TYPE peepStack(struct Stack* s)
+{
+  TYPE returnVal = NULL;
+
+  assert(s);
+
+  if ( isEmptyStack(s) )
+  {
+    return returnVal;
+  }
+  else
+  {
+    returnVal = s->head->val;
+
+    return returnVal;
+  }
+  
+}
+
+/* --------------------------------------------
+ *
+ *                  END STACK
+ * 
+ * --------------------------------------------
+ */

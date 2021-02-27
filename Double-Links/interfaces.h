@@ -27,4 +27,13 @@ int isEmptyQueue(struct Queue* q);
 TYPE frontQueue(struct Queue* q);
 /* END QUEUE */
 
+/* STACK */
+void initStack(struct Stack* s);
+void freeStack(struct Stack* s);
+int isEmptyStack(struct Stack* s);
+void pushStack(struct Stack* s, TYPE val);
+TYPE popStack(struct Stack* s);
+TYPE peepStack(struct Stack* s);
+/* END STACK */
+
 #endif
