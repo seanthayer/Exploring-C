@@ -8,12 +8,15 @@
 
 void initDeque(struct Deque* dq)
 {
+  struct DLink* senFront;
+  struct DLink* senBack;
+
   assert(dq);
 
   dq->size = 0;
 
-  struct DLink* senFront = (struct DLink*) malloc(sizeof(struct DLink));
-  struct DLink* senBack = (struct DLink*) malloc(sizeof(struct DLink));
+  senFront = (struct DLink*) malloc(sizeof(struct DLink));
+  senBack = (struct DLink*) malloc(sizeof(struct DLink));
 
   assert(senFront);
   assert(senBack);
@@ -30,9 +33,9 @@ void initDeque(struct Deque* dq)
 
 void freeDeque(struct Deque* dq)
 {
-  assert(dq);
-
   struct DLink* curr, * temp;
+
+  assert(dq);
 
   curr = dq->head;
 
@@ -49,9 +52,11 @@ void freeDeque(struct Deque* dq)
 
 void addFrontDeque(struct Deque* dq, TYPE val)
 {
+  struct DLink* dLink;
+
   assert(dq);
 
-  struct DLink* dLink = (struct DLink*) malloc(sizeof(struct DLink));
+  dLink = (struct DLink*) malloc(sizeof(struct DLink));
 
   assert(dLink);
 
@@ -65,9 +70,11 @@ void addFrontDeque(struct Deque* dq, TYPE val)
 
 void addBackDeque(struct Deque* dq, TYPE val)
 {
+  struct DLink* dLink;
+
   assert(dq);
 
-  struct DLink* dLink = (struct DLink*) malloc(sizeof(struct DLink));
+  dLink = (struct DLink*) malloc(sizeof(struct DLink));
 
   assert(dLink);
 
@@ -81,10 +88,10 @@ void addBackDeque(struct Deque* dq, TYPE val)
 
 void printDeque(struct Deque* dq)
 {
-  assert(dq);
-
   int count = 0;
   struct DLink* curr;
+
+  assert(dq);
 
   printf("Front to Back:\n\n");
 
@@ -118,9 +125,9 @@ void printDeque(struct Deque* dq)
 
 void removeFront(struct Deque* dq)
 {
-  assert(dq);
-
   struct DLink* rmv;
+
+  assert(dq);
 
   if ( isEmpty(dq) )
     return;
@@ -135,9 +142,9 @@ void removeFront(struct Deque* dq)
 
 void removeBack(struct Deque* dq)
 {
-  assert(dq);
-
   struct DLink* rmv;
+
+  assert(dq);
 
   if ( isEmpty(dq) )
     return;
@@ -167,6 +174,8 @@ TYPE front(struct Deque* dq)
 {
   TYPE returnVal = NULL;
 
+  assert(dq);
+
   if ( isEmpty(dq) )
     return returnVal;
 
@@ -179,6 +188,8 @@ TYPE front(struct Deque* dq)
 TYPE back(struct Deque* dq)
 {
   TYPE returnVal = NULL;
+
+  assert(dq);
 
   if ( isEmpty(dq) )
     return returnVal;

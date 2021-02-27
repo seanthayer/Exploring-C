@@ -59,6 +59,8 @@ int main(int argc, char const *argv[])
   freeDeque(&dq);
 
   printf("\n--------------------------------------------\n");
+
+  fclose(file);
   
   return 0;
 }
