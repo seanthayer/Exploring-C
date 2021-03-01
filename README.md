@@ -19,5 +19,8 @@ Data Structures:
 
 </details>
 
+<details><summary>Binary Search Tree (Node)</summary> 
 
-Binary Search Tree (Node)
+![BST Visualized](/.img/BST_vis.png)
+
+</details>
