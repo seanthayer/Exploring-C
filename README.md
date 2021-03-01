@@ -7,8 +7,11 @@ Data Structures:
 
 </details>
 
+<details><summary>Queue (Single-Link, Single-Sentinel)</summary> 
 
-Queue (Single-Link, Single-Sentinel)
+![Queue Visualized](/.img/queue_vis.png)
+
+</details>
 
 
 Stack (Single-Link)
