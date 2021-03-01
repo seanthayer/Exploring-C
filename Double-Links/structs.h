@@ -9,7 +9,6 @@
 struct Link
 {
   struct Link* next;
-
   TYPE val;
 };
 
@@ -40,7 +39,6 @@ struct Queue
 struct Stack
 {
   struct Link* head;
-
   int size;
 };
 

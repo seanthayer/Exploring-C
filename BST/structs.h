@@ -11,7 +11,6 @@
 struct BST
 {
   struct Node* root;
-
   int size;
 };
 

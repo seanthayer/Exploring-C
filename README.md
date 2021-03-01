@@ -1,8 +1,17 @@
 Using Professor Sinisia Todorovic's notes as foundation.
 
 Data Structures:
-* Deque (Double-Link, Double-Sentinel)
-* Queue (Single-Link, Single-Sentinel)
-* Stack (Single-Link)
+<details><summary>Deque (Double-Link, Double-Sentinel)</summary> 
 
-* Binary Search Tree (Node)
+![Deque Visualized](/.img/deque_vis.png)
+
+</details>
+
+
+Queue (Single-Link, Single-Sentinel)
+
+
+Stack (Single-Link)
+
+
+Binary Search Tree (Node)
