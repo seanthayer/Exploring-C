@@ -13,8 +13,11 @@ Data Structures:
 
 </details>
 
+<details><summary>Stack (Single-Link)</summary> 
 
-Stack (Single-Link)
+![Stack Visualized](/.img/stack_vis.png)
+
+</details>
 
 
 Binary Search Tree (Node)
