@@ -30,7 +30,7 @@ void initBST(struct BST* tree)
 void freeBST(struct BST* tree)
 {
   /*  Description:
-   *    Function calls recursive function " _freePostOrder() " to recursively free all nodes,
+   *    Function calls recursive function " _freePostOrder() " to free all nodes,
    *    in post-order.
    *    
    *  Parameters:
@@ -53,11 +53,12 @@ int containsBST(struct BST* tree, TYPE val)
 {
   /*  Description:
    *    For a well balanced tree, complexity O(log₂(n)).
-   *    Function calls recursive function " _containsNode() " to recursively traverse the BST,
+   *    Function calls recursive function " _containsNode() " to traverse the BST,
    *    and determine whether the value is contained within it.
    *    
    *  Parameters:
    *    [struct] (BST*) tree: A pointer to the BST.
+   *    [TYPE]           val: The value to search for.
    * 
    *  Pre-conditions:
    *    - Pointer 'tree' points to a proper memory location.
@@ -84,11 +85,12 @@ void addBST(struct BST* tree, TYPE val)
 {
   /*  Description:
    *    For a well balanced tree, complexity O(log₂(n)).
-   *    Function calls recursive function " _addNode() " to recursively traverse the BST,
-   *    and correctly add a value, maintaing BST principles.
+   *    Function calls recursive function " _addNode() " to traverse the BST,
+   *    and correctly add a node with the value, maintaining BST principles.
    *    
    *  Parameters:
    *    [struct] (BST*) tree: A pointer to the BST.
+   *    [TYPE]           val: The value to insert.
    * 
    *  Pre-conditions:
    *    - Pointer 'tree' points to a proper memory location.
@@ -109,11 +111,12 @@ void removeBST(struct BST* tree, TYPE val)
 {
   /*  Description:
    *    For a well balanced tree, complexity O(log₂(n)).
-   *    Function calls recursive function " _removeNode() " to recursively traverse the BST,
-   *    and correctly remove a value, maintaing BST principles.
+   *    Function calls recursive function " _removeNode() " to traverse the BST,
+   *    and correctly remove a value, maintaining BST principles.
    *    
    *  Parameters:
    *    [struct] (BST*) tree: A pointer to the BST.
+   *    [TYPE]           val: The value to remove.
    * 
    *  Pre-conditions:
    *    - Pointer 'tree' points to a proper memory location.
@@ -192,7 +195,7 @@ struct Node* _addNode(struct Node* curr, TYPE val)
 {
   /*  Description:
    *    Recursive auxiliary function.
-   *    Traverses the BST using divide and conquer. Upon encountering
+   *    Traverses the BST using binary search. Upon encountering
    *    a NULL pointer, allocates memory for a new node with the given value.
    *    After creating the new node, the function returns the node and further
    *    recursion stops. The BST is correctly re-linked as each recursive call
@@ -230,7 +233,7 @@ struct Node* _addNode(struct Node* curr, TYPE val)
   else
   {
 
-    /* Divide and Conquer traversal */
+    /* Binary search */
     if ( LT(val, curr->val) )
     {
       /* Traverse left subtree */
@@ -253,7 +256,7 @@ struct Node* _removeNode(struct Node* curr, TYPE val)
 {
   /*  Description:
    *    Recursive auxiliary function.
-   *    Traverses the BST using divide and conquer. Upon encountering
+   *    Traverses the BST using binary search. Upon encountering
    *    the node with the given value, the function determines if it has a right child node:
    * 
    *    - No child    -> the function frees the removal node, and returns its left child (NULL or otherwise),
@@ -311,7 +314,7 @@ struct Node* _removeNode(struct Node* curr, TYPE val)
   else
   {
 
-    /* Divide and Conquer traversal */
+    /* Binary search */
     if ( LT(val, curr->val) )
     {
       /* Traverse left subtree */
@@ -373,7 +376,7 @@ int _containsNode(struct Node* curr, TYPE val)
 {
   /*  Description:
    *    Recursive auxiliary function.
-   *    Traverses the BST using divide and conquer. Upon encountering
+   *    Traverses the BST using binary search. Upon encountering
    *    the node with the given value, the function returns True (1) to the previous
    *    recursive call, ending further recursion. Else, the function traverses until
    *    encountering a NULL child node pointer, indicating the absence of the given value in the BST.
