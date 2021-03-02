@@ -4,8 +4,8 @@
 # ifndef TYPE
 # define TYPE      int
 # define TYPE_SIZE sizeof(int)
-# define EQ(a,b) (a==b)
-# define LT(a,b) (a<b)
+# define EQ(a,b) (a == b)
+# define LT(a,b) (a < b)
 # endif
 
 struct BST
