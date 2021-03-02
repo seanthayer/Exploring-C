@@ -22,16 +22,16 @@ int stringHash(char* str)
 
 void initTable (hashTable* ht, int tableSize)
 {
-	int index;
+  int index;
 
   assert(ht);
 
-	ht->table = (hashLink**) malloc(sizeof(hashLink*) * tableSize);
-	ht->tableSize = tableSize;
-	ht->count = 0;
+  ht->table = (hashLink**) malloc(sizeof(hashLink*) * tableSize);
+  ht->tableSize = tableSize;
+  ht->count = 0;
 
-	for(index = 0; index < tableSize; index++)
-		ht->table[index] = NULL;
+  for(index = 0; index < tableSize; index++)
+    ht->table[index] = NULL;
   
 }
 
