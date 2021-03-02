@@ -58,6 +58,7 @@ int containsBST(struct BST* tree, TYPE val)
    *    
    *  Parameters:
    *    [struct] (BST*) tree: A pointer to the BST.
+   *    [TYPE]           val: The value to search for.
    * 
    *  Pre-conditions:
    *    - Pointer 'tree' points to a proper memory location.
@@ -85,10 +86,11 @@ void addBST(struct BST* tree, TYPE val)
   /*  Description:
    *    For a well balanced tree, complexity O(log₂(n)).
    *    Function calls recursive function " _addNode() " to traverse the BST,
-   *    and correctly add a value, maintaining BST principles.
+   *    and correctly add a node with the value, maintaining BST principles.
    *    
    *  Parameters:
    *    [struct] (BST*) tree: A pointer to the BST.
+   *    [TYPE]           val: The value to insert.
    * 
    *  Pre-conditions:
    *    - Pointer 'tree' points to a proper memory location.
@@ -114,6 +116,7 @@ void removeBST(struct BST* tree, TYPE val)
    *    
    *  Parameters:
    *    [struct] (BST*) tree: A pointer to the BST.
+   *    [TYPE]           val: The value to remove.
    * 
    *  Pre-conditions:
    *    - Pointer 'tree' points to a proper memory location.
