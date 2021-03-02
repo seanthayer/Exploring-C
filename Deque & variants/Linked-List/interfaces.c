@@ -796,10 +796,10 @@ TYPE popStack(struct Stack* s)
    *    Function accesses the value on the top of the Stack, frees the Single-Link, and returns the value.
    *    
    *  Parameters:
-   *    [struct]  (Stack*)  q   : A pointer to the Stack.
+   *    [struct]  (Stack*)  s: A pointer to the Stack.
    * 
    *  Returns:
-   *    [TYPE]    returnVal:      The value on the top of the Stack.
+   *    [TYPE]      returnVal: The value on the top of the Stack.
    * 
    *  Pre-conditions:
    *    - Pointer 's' points to a proper memory location.
