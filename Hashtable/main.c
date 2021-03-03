@@ -5,7 +5,7 @@
 #include "interfaces.h"
 
 
-char* getWord(FILE *file); /* getWord function referenced from Professor Sinisia Todorovic */
+char* getWord(FILE *file); /* getWord function referenced from Professor Sinisa Todorovic */
 
 /*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*/
 

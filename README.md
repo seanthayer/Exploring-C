@@ -1,4 +1,4 @@
-Using Professor Sinisia Todorovic's notes as foundation.
+Using Professor Sinisa Todorovic's notes as foundation.
 
 Data Structures:
 <details><summary>Deque (Double-Link, Double-Sentinel)</summary> 
