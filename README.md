@@ -19,6 +19,12 @@ Data Structures:
 
 </details>
 
+<details><summary>Hashtable (Hash-Link)</summary> 
+
+![Hashtable Visualized](/.img/hashtable_vis.png)
+
+</details>
+
 <details><summary>Binary Search Tree (Node)</summary> 
 
 ![BST Visualized](/.img/BST_vis.png)
