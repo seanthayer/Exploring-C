@@ -90,6 +90,20 @@ int main(int argc, char const *argv[])
 
   printTable(&ht);
 
+  printf("- Contains key {\"the\"}?: %d\n\n", containsKey(&ht, "the"));
+
+  printf("- Removing key {\"the\"}\n\n");
+
+  removeKey(&ht, "the");
+
+  printf("- Contains key {\"the\"}?: %d\n\n", containsKey(&ht, "the"));
+
+  printf("- Book-kept element count:  %d\n", ht.count);
+  printf("- Calculated element count: %d\n\n", sizeTable(&ht));
+
+  printf("- Empty buckets:  %d\n", emptyBuckets(&ht));
+  printf("- Table load:     %f\n", tableLoad(&ht));
+
   printf("\n");
 
   printf("- Freeing Hashtable memory.\n");  

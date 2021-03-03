@@ -118,7 +118,7 @@ void insertTable(hashTable* ht, KeyType key, ValueType val)
   htLink->key = key;
   htLink->val = val;
 
-  index = (unsigned long)(labs( stringHash(key) ) % ht->tableSize);
+  index = (int)(labs( stringHash(key) ) % ht->tableSize);
 
   htLink->next = ht->table[index];
 
@@ -129,6 +129,64 @@ void insertTable(hashTable* ht, KeyType key, ValueType val)
 
 void removeKey(hashTable* ht, KeyType key)
 {
+  int index;
+  int htKeyHash;
+  int paramKeyHash;
+  hashLink* htLink;
+  hashLink* htLinkNxt;
+  hashLink* prev;
+
+  assert(ht);
+
+  index = (int)(labs( stringHash(key) ) % ht->tableSize);
+  paramKeyHash = stringHash(key);
+
+  if (ht->table[index])
+  {
+    htLink = ht->table[index];
+    htKeyHash = stringHash(htLink->key);
+
+    if ( EQ(htKeyHash, paramKeyHash) )
+    {
+      /* Found key at front index */
+      ht->table[index] = htLink->next;
+      
+      free(htLink->key);
+      free(htLink);
+
+      ht->count--;
+    }
+    else
+    {
+      prev = htLink;
+      htLinkNxt = htLink->next;
+
+      while (htLinkNxt)
+      {
+        htKeyHash = stringHash(htLinkNxt->key);
+
+        if ( EQ(htKeyHash, paramKeyHash) )
+        {
+          prev->next = htLinkNxt->next;
+
+          free(htLinkNxt->key);
+          free(htLinkNxt);
+
+          htLinkNxt = NULL;
+
+          ht->count--;
+        }
+        else
+        {
+          prev = htLinkNxt;
+          htLinkNxt = htLinkNxt->next;
+        }
+
+      }
+
+    }
+
+  }
 
 }
 
@@ -175,7 +233,7 @@ int containsKey(hashTable* ht, KeyType key)
 
   assert(ht);
 
-  index = (int)(labs( stringHash(key)) % ht->tableSize);
+  index = (int)(labs( stringHash(key) ) % ht->tableSize);
   paramKeyHash = stringHash(key);
 
   if (ht->table[index])
